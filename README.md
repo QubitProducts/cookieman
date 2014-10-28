@@ -1,0 +1,4 @@
+cookieman
+=========
+
+simple cookie lib
