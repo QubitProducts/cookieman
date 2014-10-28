@@ -1,7 +1,7 @@
 {
   "name": "cookieman",
   "version": "1.0.0",
-  "main": "src/cookieman",
+  "main": "lib/cookieman",
   "dependencies": {},
   "devDependencies": {
     "karma": "^0.12.24",

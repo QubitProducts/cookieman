@@ -1,5 +1,5 @@
 define(function (require) {
-  var cookieman = require("../src/cookieman");
+  var cookieman = require("../lib/cookieman");
 
   describe('cookieman', function () { 
 
