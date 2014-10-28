@@ -44,11 +44,11 @@
       if (!document.cookie) {
         return [];
       }
-      return document.cookie.toString().split(";").map(function(cookie) {
+      return document.cookie.split(";").map(function(cookie) {
         cookie = cookie.split("=");
         return {
           name: cookie[0].trim(),
-          value: cookie[1].trim()
+          value: cookie[1] && cookie[1].trim()
         };
       });
     },
@@ -65,10 +65,6 @@
       var paths = getPaths(window.location.pathname);
       var domains = getDomains(window.location.hostname);
 
-      // if wasn't deleted return 
-      if (!this.clear(name)) {
-        return [];
-      }
       for (d = 0; d < domains.length; d++) {
         for (p = 0; p < paths.length; p++) {
           // track deleted cookies
