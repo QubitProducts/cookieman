@@ -82,7 +82,7 @@ define(function (require) {
 
     });
 
-    describe("clear", function () {
+    describe("delete", function () {
 
       afterEach(function () {
         document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
@@ -93,23 +93,23 @@ define(function (require) {
       it("should delete cookies on the specified path and domain", function () {
         cookieman.set("sweety", "darling");
         expect(cookieman.get("sweety")).to.have.length(1);
-        expect(cookieman.clear("sweety")).to.be(true);
+        expect(cookieman.delete("sweety")).to.be(true);
         expect(cookieman.get("sweety")).to.have.length(0);
       });
 
       it("should return false if no cookie was deleted", function () {
         cookieman.set("flippy", "magoo", { path: "/context.html"});
         expect(cookieman.get("flippy")).to.have.length(1);
-        expect(cookieman.clear("flippy")).to.be(false);
+        expect(cookieman.delete("flippy")).to.be(false);
         expect(cookieman.get("flippy")).to.have.length(1);
-        expect(cookieman.clear("flippy", { path: "/context.html"})).to.be(true);
+        expect(cookieman.delete("flippy", { path: "/context.html"})).to.be(true);
         expect(cookieman.get("flippy")).to.have.length(0);
       });
 
     });
 
 
-    describe("clearAll", function () {
+    describe("deleteAll", function () {
 
       afterEach(function () {
         document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
@@ -119,20 +119,20 @@ define(function (require) {
 
       it("should delete cookies no matter what path/domain they're on", function () {
         cookieman.set("flippy", "magoo", { path: "/context.html"});
-        cookieman.clearAll("sweety");
+        cookieman.deleteAll("sweety");
         expect(cookieman.get("sweety")).to.have.length(0);
       });
 
-      it("should return metadata about the path and domain of the cleared cookie", function () {
+      it("should return metadata about the path and domain of the deleted cookie", function () {
         
         cookieman.set("flippy", "magoo", { path: "/context.html"});
-        expect(cookieman.clearAll("flippy")).to.eql([{
+        expect(cookieman.deleteAll("flippy")).to.eql([{
           path: "/context.html",
           domain: null
         }]);
 
         cookieman.set("flippy", "magoo");
-        expect(cookieman.clearAll("flippy")).to.eql([{
+        expect(cookieman.deleteAll("flippy")).to.eql([{
           path: "/",
           domain: null
         }]);
