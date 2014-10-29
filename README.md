@@ -1,7 +1,7 @@
 cookieman
 =========
 
-simple commonjs cookie lib with path and domain awareness and ie8+ support
+simple commonjs cookie lib with path and domain awareness and ie7+ support
 
 
 ## Usage    
@@ -31,16 +31,16 @@ get an array of cookies that match the specified name [{name: "foo", value: "bar
 cm.get("name"); // [{name: "name", value: "value"}]
 ```
 
-### delete
-delete a cookie, (this returns a boolean indicating whether the cookie was deleted or not)
+### clear
+clear a cookie, (this returns a boolean indicating whether the cookie was cleared or not)
 ```javascript
-cm.delete("name"); // true
+cm.clear("name"); // true
 ```
 
-### deleteAll
-force delete all cookies with specified name and return path and domain of deleted cookies
+### clearAll
+force clear all cookies with specified name and return path and domain of cleared cookies
 ```javascript
-cm.deleteAll("name"); // [{ path: "/", domain: ".foo"}]
+cm.clearAll("name"); // [{ path: "/", domain: ".foo"}]
 ```
 ## Test
 
