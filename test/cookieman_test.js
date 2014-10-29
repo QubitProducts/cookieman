@@ -4,7 +4,7 @@ define(function (require) {
 
   describe('cookieman', function () { 
 
-    describe(".cookies ", function () {
+    describe("cookies ", function () {
 
       describe("when page has no cookies", function () {
 
@@ -26,6 +26,7 @@ define(function (require) {
 
         afterEach(function () {
           document.cookie = "foo=bar; expires=" + new Date(1).toUTCString();
+          document.cookie = "blah; expires=" + new Date(1).toUTCString();
         });
 
         it("should map cookie values", function () {
@@ -34,6 +35,15 @@ define(function (require) {
             name: "foo",
             value: "bar"
           }]);
+        });
+
+        it("should handle cookies with no equals sign", function () {
+          document.cookie = "blah";
+          expect(cookieman.cookies()).to.have.length(2);
+          expect(cookieman.cookies()[1]).to.eql({
+            name: "blah",
+            value: null
+          });
         });
 
       });
