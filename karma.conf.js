@@ -1,6 +1,8 @@
 module.exports = function(config) {
   config.set({
 
+    urlRoot: "/cookie/man",
+
     frameworks: ['mocha', 'expect', 'sinon'],
 
     files: [

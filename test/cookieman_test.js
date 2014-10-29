@@ -1,4 +1,5 @@
 define(function (require) {
+
   var cookieman = require("../lib/cookieman");
 
   describe('cookieman', function () { 
@@ -24,7 +25,7 @@ define(function (require) {
         });
 
         afterEach(function () {
-          document.cookie = "foo=bar; Expires=" + new Date(1).toUTCString();
+          document.cookie = "foo=bar; expires=" + new Date(1).toUTCString();
         });
 
         it("should map cookie values", function () {
@@ -43,14 +44,14 @@ define(function (require) {
 
       beforeEach(function () {
         document.cookie = "sweety=darling;";
-        document.cookie = "flippy=magoo; Path=/context.html";
+        document.cookie = "flippy=magoo; path=/cookie";
         document.cookie = "flippy=magoo1;";
       });
 
       afterEach(function () {
-        document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Path=/context.html; Expires=" + new Date(1).toUTCString();
+        document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
       });
 
       it("should return the cookies that match name", function () {
@@ -63,9 +64,9 @@ define(function (require) {
     describe("set", function () {
 
       afterEach(function () {
-        document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Path=/context.html; Expires=" + new Date(1).toUTCString();
+        document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
       });
 
       it("should set cookies", function () {
@@ -74,7 +75,7 @@ define(function (require) {
 
         cookieman.set("sweety", "darling");
         cookieman.set("flippy", "magoo");
-        cookieman.set("flippy", "magoo", { path: "/context.html"});
+        cookieman.set("flippy", "magoo", { path: "/cookie"});
 
         expect(cookieman.get("flippy")).to.have.length(2);
         expect(cookieman.get("sweety")).to.have.length(1);
@@ -85,9 +86,9 @@ define(function (require) {
     describe("delete", function () {
 
       afterEach(function () {
-        document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Path=/context.html; Expires=" + new Date(1).toUTCString();
+        document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
       });
 
       it("should delete cookies on the specified path and domain", function () {
@@ -98,11 +99,11 @@ define(function (require) {
       });
 
       it("should return false if no cookie was deleted", function () {
-        cookieman.set("flippy", "magoo", { path: "/context.html"});
+        cookieman.set("flippy", "magoo", { path: "/cookie"});
         expect(cookieman.get("flippy")).to.have.length(1);
         expect(cookieman.delete("flippy")).to.be(false);
         expect(cookieman.get("flippy")).to.have.length(1);
-        expect(cookieman.delete("flippy", { path: "/context.html"})).to.be(true);
+        expect(cookieman.delete("flippy", { path: "/cookie"})).to.be(true);
         expect(cookieman.get("flippy")).to.have.length(0);
       });
 
@@ -112,28 +113,29 @@ define(function (require) {
     describe("deleteAll", function () {
 
       afterEach(function () {
-        document.cookie = "sweety=darling; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; Path=/context.html; Expires=" + new Date(1).toUTCString();
+        document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
       });
 
       it("should delete cookies no matter what path/domain they're on", function () {
-        cookieman.set("flippy", "magoo", { path: "/context.html"});
+        cookieman.set("flippy", "magoo", { path: "/cookie"});
         cookieman.deleteAll("sweety");
         expect(cookieman.get("sweety")).to.have.length(0);
       });
 
       it("should return metadata about the path and domain of the deleted cookie", function () {
+        var domain = window.location.hostname === "localhost" ? null : window.location.hostname;
         
-        cookieman.set("flippy", "magoo", { path: "/context.html"});
+        cookieman.set("flippy", "magoo", { path: "/cookie"});
         expect(cookieman.deleteAll("flippy")).to.eql([{
-          path: "/context.html",
-          domain: null
+          path: "/cookie",
+          domain: domain
         }]);
 
         cookieman.set("flippy", "magoo");
         expect(cookieman.deleteAll("flippy")).to.eql([{
-          path: "/",
+          path: null,
           domain: null
         }]);
 
