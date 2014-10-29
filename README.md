@@ -10,7 +10,7 @@ var cm = require("cookieman");
 ```
 
 ### get
-get an array containing all available cookies
+get an array containing all available cookies that match specified name
 ```javascript
 cm.cookies(); // [{name: "foo", value: "bar"}]
 ```
