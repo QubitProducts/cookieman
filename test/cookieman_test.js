@@ -91,6 +91,30 @@ define(function (require) {
         expect(cookieman.get("sweety")).to.have.length(1);
       });
 
+      describe("with expiry", function () {
+        var delay;
+        beforeEach(function () {
+          delay = 1000;
+          cookieman.set("flippy", "magoo", { expires: new Date(Date.now() + delay)});
+        });
+
+        it("should set the cookie", function () {
+          expect(cookieman.get("flippy")).to.have.length(1);
+        });
+
+        it("should expire", function (done) {
+          setTimeout(function () {
+            try {
+            expect(cookieman.get("flippy")).to.have.length(0);
+            done();
+            } catch(e) {
+              done(e);
+            }
+          }, delay);
+        });
+
+      });
+
     });
 
     describe("clear", function () {
