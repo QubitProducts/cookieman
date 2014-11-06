@@ -1,7 +1,7 @@
 cookieman
 =========
 
-simple commonjs cookie lib with path and domain awareness and ie7+ support
+Simple commonjs cookie lib with path and domain awareness and ie7+ support
 
 
 ## Usage    
@@ -10,13 +10,13 @@ var cm = require("cookieman");
 ```
 
 ### get
-get an array containing all available cookies that match specified name
+Get an array containing all available cookies that match specified name
 ```javascript
-cm.cookies(); // [{name: "foo", value: "bar"}]
+cm.get("foo"); // [{name: "foo", value: "bar"}]
 ```
 
 ### set
-set a cookie, with optional options object to specify expiry, path and/or domain
+Set a cookie, with optional options object to specify expiry, path and/or domain
 ```javascript
 cm.set("name", "value", {
 	expiry: [date], // e.g. new Date(Date.now() + 60000)
@@ -26,19 +26,23 @@ cm.set("name", "value", {
 ```
 
 ### cookies
-get an array of cookies that match the specified name [{name: "foo", value: "bar"}]
+Get an array of all available cookies
 ```javascript
-cm.get("name"); // [{name: "name", value: "value"}]
+cm.cookies(); // [{name: "name", value: "value"}]
 ```
 
 ### clear
-clear a cookie, (this returns a boolean indicating whether the cookie was cleared or not)
+Clear a cookie. This returns a boolean indicating whether the cookie was cleared or not.
+Note that to delete a cookie which lives on a specific path and/or domain, you must specify its path and/or domain.
 ```javascript
-cm.clear("name"); // true
+cm.clear("name", {
+	path: [path], // e.g. "/"
+	domain: [domain] // e.g. ".foo.com"
+}); // true
 ```
 
 ### clearAll
-force clear all cookies with specified name and return path and domain of cleared cookies
+Brute force clear all cookies with specified name on all super/subdomains and paths and return path and domain of cleared cookies
 ```javascript
 cm.clearAll("name"); // [{ path: "/", domain: ".foo"}]
 ```
