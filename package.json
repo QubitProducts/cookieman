@@ -1,6 +1,6 @@
 {
   "name": "cookieman",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "lib/cookieman",
   "dependencies": {},
   "devDependencies": {
@@ -15,5 +15,25 @@
     "sinon": "^1.11.1",
     "webpack": "^1.4.9",
     "webpack-dev-server": "^1.6.5"
-  }
+  },
+  "description": "cookieman =========",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qubitdigital/cookieman.git"
+  },
+  "keywords": [
+    "cookie"
+  ],
+  "author": "alan clarke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qubitdigital/cookieman/issues"
+  },
+  "homepage": "https://github.com/qubitdigital/cookieman"
 }
