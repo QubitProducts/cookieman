@@ -56,14 +56,18 @@ define(function (require) {
         document.cookie = "sweety=darling;";
         document.cookie = "flippy=magoo; path=/cookie";
         document.cookie = "flippy=magoo1;";
-        document.cookie = "foo=ba=r;";
+        document.cookie = "foo1=ba=r;";
+        document.cookie = "foo2=barn=;";
+        document.cookie = "foo3==barn=;";
       });
 
       afterEach(function () {
         document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
         document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
         document.cookie = "flippy=magoo1; expires=" + new Date(1).toUTCString();
-        document.cookie = "foo=ba=r; expires=" + new Date(1).toUTCString();
+        document.cookie = "foo1=ba=r; expires=" + new Date(1).toUTCString();
+        document.cookie = "foo2=barn=; expires=" + new Date(1).toUTCString();
+        document.cookie = "foo3==barn=; expires=" + new Date(1).toUTCString();
       });
 
       it("should return the cookies that match name", function () {
@@ -72,9 +76,17 @@ define(function (require) {
       });
 
       it("should work when the value has an equals", function () {
-        expect(cookieman.get("foo")).to.eql([{
-          name: 'foo',
-          value: 'ba=r'
+        expect(cookieman.get("foo1")).to.eql([{
+          name: "foo1",
+          value: "ba=r"
+        }]);
+        expect(cookieman.get("foo2")).to.eql([{
+          name: "foo2",
+          value: "barn="
+        }]);
+        expect(cookieman.get("foo3")).to.eql([{
+          name: "foo3",
+          value: "=barn="
         }]);
       });
 
