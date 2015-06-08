@@ -2,7 +2,7 @@ define(function (require) {
 
   var cookieman = require("../lib/cookieman");
 
-  describe('cookieman', function () { 
+  describe('cookieman', function () {
 
     describe("cookies ", function () {
 
@@ -56,17 +56,26 @@ define(function (require) {
         document.cookie = "sweety=darling;";
         document.cookie = "flippy=magoo; path=/cookie";
         document.cookie = "flippy=magoo1;";
+        document.cookie = "foo=ba=r;";
       });
 
       afterEach(function () {
         document.cookie = "sweety=darling; expires=" + new Date(1).toUTCString();
-        document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
         document.cookie = "flippy=magoo; path=/cookie; expires=" + new Date(1).toUTCString();
+        document.cookie = "flippy=magoo1; expires=" + new Date(1).toUTCString();
+        document.cookie = "foo=ba=r; expires=" + new Date(1).toUTCString();
       });
 
       it("should return the cookies that match name", function () {
         expect(cookieman.get("flippy")).to.have.length(2);
         expect(cookieman.get("sweety")).to.have.length(1);
+      });
+
+      it("should work when the value has an equals", function () {
+        expect(cookieman.get("foo")).to.eql([{
+          name: 'foo',
+          value: 'ba=r'
+        }]);
       });
 
     });
@@ -160,7 +169,7 @@ define(function (require) {
 
       it("should return metadata about the path and domain of the cleard cookie", function () {
         var domain = window.location.hostname === "localhost" ? null : window.location.hostname;
-        
+
         cookieman.set("flippy", "magoo", { path: "/cookie"});
         expect(cookieman.clearAll("flippy")).to.eql([{
           path: "/cookie",
