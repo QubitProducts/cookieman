@@ -42,7 +42,7 @@ define(function (require) {
           expect(cookieman.cookies()).to.have.length(2);
           expect(cookieman.cookies()[1]).to.eql({
             name: "blah",
-            value: null
+            value: ""
           });
         });
 
@@ -59,6 +59,7 @@ define(function (require) {
         document.cookie = "foo1=ba=r;";
         document.cookie = "foo2=barn=;";
         document.cookie = "foo3==barn=;";
+        document.cookie = "empty=;";
       });
 
       afterEach(function () {
@@ -68,6 +69,7 @@ define(function (require) {
         document.cookie = "foo1=ba=r; expires=" + new Date(1).toUTCString();
         document.cookie = "foo2=barn=; expires=" + new Date(1).toUTCString();
         document.cookie = "foo3==barn=; expires=" + new Date(1).toUTCString();
+        document.cookie = "empty=; expires=" + new Date(1).toUTCString();
       });
 
       it("should return the cookies that match name", function () {
@@ -90,6 +92,21 @@ define(function (require) {
         }]);
       });
 
+      it("should get an empty string when no cookie value", function () {
+        expect(cookieman.get("empty")).to.eql([{
+          name: "empty",
+          value: ""
+        }]);
+      })
+
+      it("setting after getting should keep the cookie value as is", function () {
+        ["sweety", "flippy", "foo1", "foo2", "foo3", "empty"].forEach(function (c) {
+          var before = cookieman.get(c)[0]
+          cookieman.set(before.name, before.value)
+          var after = cookieman.get(c)[0]
+          expect(after).to.eql(before)
+        })
+      });
     });
 
     describe("set", function () {
