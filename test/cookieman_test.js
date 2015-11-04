@@ -109,6 +109,47 @@ define(function (require) {
       });
     });
 
+    describe("val", function () {
+
+      describe("get signature", function() {
+        beforeEach(function () {
+          document.cookie = "flippy=magoo;";
+          document.cookie = "flippy=magoo1;";
+          document.cookie = "empty=;"
+        });
+
+        afterEach(function () {
+          document.cookie = "flippy=magoo; expires=" + new Date(1).toUTCString();
+          document.cookie = "flippy=magoo1; expires=" + new Date(1).toUTCString();
+          document.cookie = "empty=;" + new Date(1).toUTCString();
+        });
+
+        it("should return the first matching cookie with that name", function () {
+          expect(cookieman.val("flippy").to.eql("magoo"));
+          expect(cookieman.val("empty").to.eql(""));
+        })
+
+        it("should return null if the cookie doesn't exist", function () {
+          expect(cookieman.val("iono")).to.eql(null);
+        });
+
+        it("should return all cookies in an array", function () {
+          expect(cookieman.val()).to.eql(cookieman.cookies());
+        });
+      })
+      
+      describe("set signature", function() {
+        afterEach(function() {
+          document.cookie = "testing; expires=" + new Date(1).toUTCString();
+        })
+        
+        it("should set the named cookie's value", function () {
+          cookieman.val("testing", "123")
+          expect(cookieman.val("testing")).to.eql("123");
+        });  
+      })
+    });
+
     describe("set", function () {
 
       afterEach(function () {
