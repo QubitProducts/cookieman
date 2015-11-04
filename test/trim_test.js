@@ -1,4 +1,5 @@
 var trim = require("../lib/trim");
+
 describe("trim", function () {
 
   it("should remove whitespace from start", function () {

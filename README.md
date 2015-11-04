@@ -49,5 +49,5 @@ cm.clearAll("name"); // [{ path: "/", domain: ".foo"}]
 ## Test
 
 ```
-karma start
+npm test
 ```
