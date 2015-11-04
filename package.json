@@ -4,17 +4,16 @@
   "main": "lib/cookieman",
   "dependencies": {},
   "devDependencies": {
-    "karma": "^0.12.24",
-    "karma-chrome-launcher": "^0.1.5",
-    "karma-expect": "^1.1.0",
-    "karma-mocha": "^0.1.9",
-    "karma-sinon": "^1.0.3",
-    "karma-sourcemap-loader": "^0.3.0",
-    "karma-webpack": "^1.3.1",
-    "mocha": "^2.0.1",
-    "sinon": "^1.11.1",
-    "webpack": "^1.4.9",
-    "webpack-dev-server": "^1.6.5"
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-expect": "^1.1.1",
+    "karma-mocha": "^0.2.0",
+    "karma-sinon": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.2",
+    "webpack": "^1.12.2"
   },
   "description": "cookieman =========",
   "directories": {
