@@ -1,6 +1,6 @@
 {
   "name": "cookieman",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {
     "after": {
       "version": "0.8.1",
