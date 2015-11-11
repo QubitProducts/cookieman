@@ -1,6 +1,4 @@
-cookieman
-=========
-
+#  ![Cookieman](https://cloud.githubusercontent.com/assets/640611/11089200/f075ee22-885f-11e5-8cda-d620b6b79c69.png)
 Simple commonjs cookie lib with path and domain awareness and ie7+ support
 
 
