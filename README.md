@@ -2,7 +2,7 @@
 Simple commonjs cookie lib with path and domain awareness and ie7+ support
 
 
-## Usage    
+## usage    
 ```javascript
 var cm = require("cookieman");
 ```
@@ -44,7 +44,7 @@ Brute force clear all cookies with specified name on all super/subdomains and pa
 ```javascript
 cm.clearAll("name"); // [{ path: "/", domain: ".foo"}]
 ```
-## Test
+## test
 
 ```
 npm test
