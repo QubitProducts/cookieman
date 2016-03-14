@@ -2,7 +2,9 @@
   "name": "cookieman",
   "version": "1.0.4",
   "main": "lib/cookieman",
-  "dependencies": {},
+  "dependencies": {
+    "benchmark": "^2.1.0"
+  },
   "devDependencies": {
     "karma": "^0.13.15",
     "karma-chrome-launcher": "^0.2.1",
@@ -10,9 +12,11 @@
     "karma-mocha": "^0.2.0",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.6",
+    "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.3",
     "sinon": "^1.17.2",
+    "standard": "^6.0.8",
     "webpack": "^1.12.2"
   },
   "description": "cookieman =========",
@@ -20,7 +24,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "node_modules/.bin/karma start --single-run && node_modules/.bin/standard"
   },
   "repository": {
     "type": "git",
