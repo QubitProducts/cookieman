@@ -20,9 +20,15 @@ function benchmark (name, fn) {
 function time (fn) {
   var times = 2000
   var i = times
-  var start = (window.performance || Date).now()
+  var start = now()
   while (i--) fn()
-  return ' executes in ' + (((window.performance || Date).now() - start) / times).toFixed(3) + 'ms'
+  return ' executes in ' + ((now() - start) / times).toFixed(3) + 'ms'
 }
 
 function noop () {}
+
+function now () {
+  return window.performance
+    ? window.performance.now()
+    : new Date().valueOf()
+}
