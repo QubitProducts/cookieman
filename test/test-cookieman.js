@@ -96,12 +96,16 @@ describe('cookieman', function () {
     })
 
     it('setting after getting should keep the cookie value as is', function () {
-      ['sweety', 'flippy', 'foo1', 'foo2', 'foo3', 'empty'].forEach(function (c) {
+      var arr = ['sweety', 'flippy', 'foo1', 'foo2', 'foo3', 'empty']
+      var l = arr.length
+      var c
+      while (l--) {
+        c = arr[l]
         var before = cookieman.get(c)[0]
         cookieman.set(before.name, before.value)
         var after = cookieman.get(c)[0]
         expect(after).to.eql(before)
-      })
+      }
     })
   })
 
