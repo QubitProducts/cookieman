@@ -28,7 +28,7 @@ function time (fn) {
 function noop () {}
 
 function now () {
-  return window.performance
+  return (window.performance && window.performance.now)
     ? window.performance.now()
     : new Date().valueOf()
 }

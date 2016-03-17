@@ -128,7 +128,7 @@ describe('cookieman', function () {
       var delay
       beforeEach(function () {
         delay = 1200
-        cookieman.set('flippy', 'magoo', { expires: new Date(Date.now() + delay) })
+        cookieman.set('flippy', 'magoo', { expires: new Date(new Date().valueOf() + delay) })
       })
 
       it('should set the cookie', function () {
