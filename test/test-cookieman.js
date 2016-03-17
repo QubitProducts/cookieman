@@ -2,6 +2,11 @@
 var cookieman = require('../lib/cookieman')
 
 describe('cookieman', function () {
+  beforeEach(function () {
+    var cookies = cookieman.cookies()
+    var l = cookies.length
+    while (l--) cookieman.clearAll(cookies.pop().name)
+  })
   describe('cookies ', function () {
     describe('when page has no cookies', function () {
       it('should be an array', function () {
@@ -34,7 +39,7 @@ describe('cookieman', function () {
       it('should handle cookies with no equals sign', function () {
         document.cookie = 'blah'
         expect(cookieman.cookies()).to.have.length(2)
-        expect(cookieman.cookies()[1]).to.eql({
+        expect(cookieman.get('blah')[0]).to.eql({
           name: 'blah',
           value: ''
         })
@@ -122,7 +127,7 @@ describe('cookieman', function () {
     describe('with expiry', function () {
       var delay
       beforeEach(function () {
-        delay = 1000
+        delay = 1200
         cookieman.set('flippy', 'magoo', { expires: new Date(Date.now() + delay) })
       })
 
@@ -131,15 +136,18 @@ describe('cookieman', function () {
       })
 
       it('should expire', function (done) {
-        setTimeout(function () {
-          try {
-            expect(cookieman.get('flippy')).to.have.length(0)
-            done()
-          } catch (e) {
-            done(e)
-          }
-        }, delay)
+        this.timeout(4000)
+        waitFor(function () {
+          return !!cookieman.get('flippy').length
+        }, done)
       })
+
+      function waitFor (test, cb) {
+        if (test()) return cb()
+        setTimeout(function () {
+          waitFor(test, cb)
+        }, 10)
+      }
     })
   })
 
