@@ -1,6 +1,6 @@
 {
   "name": "cookieman",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "lib/cookieman",
   "dependencies": {
     "benchmark": "^2.1.0"
