@@ -22,6 +22,11 @@ cm.set('name', 'value', {
   domain: [domain] // e.g. '.foo.com'
 })
 ```
+### val
+Return the first value of a cookie that has been set on the page, or null if the cookie is not present
+```javascript
+cm.val('name')
+```
 
 ### cookies
 Get an array of all available cookies

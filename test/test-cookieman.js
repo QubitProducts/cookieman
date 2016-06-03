@@ -186,7 +186,7 @@ describe('cookieman', function () {
       document.cookie = 'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
     })
 
-    it("should clear cookies no matter what path/domain they're on", function () {
+    it('should clear cookies no matter what path/domain they\'re on', function () {
       cookieman.set('flippy', 'magoo', { path: '/cookie' })
       cookieman.clearAll('sweety')
       expect(cookieman.get('sweety')).to.have.length(0)
@@ -206,6 +206,15 @@ describe('cookieman', function () {
         path: null,
         domain: null
       }])
+    })
+  })
+  describe('val', function () {
+    it('should return null if no cookie with that name has been set', function () {
+      expect(cookieman.val('sweety')).to.eql(null)
+    })
+    it('should return the value of the cookie if the cookie exists', function () {
+      cookieman.set('sweety', 'darling', { path: '/cookie' })
+      expect(cookieman.val('sweety')).to.eql('darling')
     })
   })
 })
