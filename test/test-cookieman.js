@@ -216,5 +216,10 @@ describe('cookieman', function () {
       cookieman.set('sweety', 'darling', { path: '/cookie' })
       expect(cookieman.val('sweety')).to.eql('darling')
     })
+    it('should return the value of the first cookie if multiple cookies with the same name exists', function () {
+      cookieman.set('sweety', 'darling', { path: '/cookie' })
+      cookieman.set('sweety', 'pie', { path: '/' })
+      expect(cookieman.val('sweety')).to.eql('darling')
+    })
   })
 })
