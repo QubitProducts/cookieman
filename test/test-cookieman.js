@@ -221,5 +221,13 @@ describe('cookieman', function () {
       cookieman.set('sweety', 'pie', { path: '/' })
       expect(cookieman.val('sweety')).to.eql('darling')
     })
+    it('should return an empty string if that is the value of the cookie', function () {
+      cookieman.set('sweety', '', { path: '/cookie' })
+      expect(cookieman.val('sweety')).to.eql('')
+    })
+    it('should return null if the cookie had no value set', function () {
+      document.cookie = 'sweety=; path=/cookie; expires=' + new Date(1).toUTCString()
+      expect(cookieman.val('sweety')).to.eql(null)
+    })
   })
 })
