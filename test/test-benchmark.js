@@ -1,4 +1,3 @@
-/* global describe after it */
 var cm = require('../lib/cookieman')
 
 describe('benchmark', function () {

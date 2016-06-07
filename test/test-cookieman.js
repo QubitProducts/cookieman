@@ -1,4 +1,3 @@
-/* global describe beforeEach afterEach it expect */
 var cookieman = require('../lib/cookieman')
 
 describe('cookieman', function () {
@@ -128,11 +127,37 @@ describe('cookieman', function () {
       expect(cookieman.get('sweety')).to.have.length(1)
     })
 
-    describe('with expiry', function () {
+    describe('with expiry as date object', function () {
       var delay
       beforeEach(function () {
         delay = 1200
         cookieman.set('flippy', 'magoo', { expires: new Date(new Date().valueOf() + delay) })
+      })
+
+      it('should set the cookie', function () {
+        expect(cookieman.get('flippy')).to.have.length(1)
+      })
+
+      it('should expire', function (done) {
+        this.timeout(4000)
+        waitFor(function () {
+          return !!cookieman.get('flippy').length
+        }, done)
+      })
+
+      function waitFor (test, cb) {
+        if (test()) return cb()
+        setTimeout(function () {
+          waitFor(test, cb)
+        }, 10)
+      }
+    })
+
+    describe('with expiry as timestamp', function () {
+      var delay
+      beforeEach(function () {
+        delay = 1200
+        cookieman.set('flippy', 'magoo', { expires: new Date().valueOf() + delay })
       })
 
       it('should set the cookie', function () {

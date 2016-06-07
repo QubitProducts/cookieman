@@ -1,4 +1,3 @@
-/* global describe it expect */
 var getDomains = require('../lib/domains')
 
 describe('getDomains', function () {
