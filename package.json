@@ -38,5 +38,16 @@
   "bugs": {
     "url": "https://github.com/QubitProducts/cookieman/issues"
   },
-  "homepage": "https://github.com/QubitProducts/cookieman"
+  "homepage": "https://github.com/QubitProducts/cookieman",
+  "standard": {
+    "global": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  }
 }

@@ -1,4 +1,3 @@
-/* global describe it expect */
 var trim = require('../lib/trim')
 
 describe('trim', function () {

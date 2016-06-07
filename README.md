@@ -17,7 +17,7 @@ cm.get('foo') // [{name: 'foo', value: 'bar'}]
 Set a cookie, with optional options object to specify expiry, path and/or domain
 ```javascript
 cm.set('name', 'value', {
-  expires: [date], // e.g. new Date(new Date().getTime() + 60000)
+  expires: [date], // e.g. new Date(new Date().getTime() + 60000) or a timestamp
   path: [path], // e.g. '/'
   domain: [domain] // e.g. '.foo.com'
 })
