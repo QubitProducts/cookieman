@@ -18,7 +18,7 @@
     "standard": "^6.0.8",
     "webpack": "^1.12.2"
   },
-  "description": "cookieman =========",
+  "description": "Simple commonjs cookie lib with path and domain awareness and ie7+ support",
   "directories": {
     "test": "test"
   },
