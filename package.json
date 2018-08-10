@@ -20,19 +20,20 @@
   },
   "description": "Simple commonjs cookie lib with path and domain awareness and ie7+ support",
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/karma start --single-run && node_modules/.bin/standard"
+    "test": "karma start --single-run && node_modules/.bin/standard"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/QubitProducts/cookieman.git"
+    "url": "git+https://github.com/QubitProducts/cookieman.git"
   },
   "keywords": [
     "cookie"
   ],
-  "author": "alan clarke",
+  "author": "Alan Clarke <alan@qubit.com> (qubit.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/QubitProducts/cookieman/issues"
