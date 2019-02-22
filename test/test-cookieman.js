@@ -218,7 +218,7 @@ describe('cookieman', function () {
     })
 
     it('should return metadata about the path and domain of the cleard cookie', function () {
-      var domain = window.location.hostname === 'localhost' ? null : window.location.hostname
+      var domain = window.location.hostname
 
       cookieman.set('flippy', 'magoo', { path: '/cookie' })
       expect(cookieman.clearAll('flippy')).to.eql([{
