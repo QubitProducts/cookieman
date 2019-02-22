@@ -18,6 +18,6 @@ describe('getDomains', function () {
   })
 
   it('should return nothing else', function () {
-    expect(getDomains('just.keep.coding.com')).to.have.length(7)
+    expect(getDomains('just.keep.coding.com')).to.have.length(9)
   })
 })
