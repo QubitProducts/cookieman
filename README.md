@@ -1,20 +1,25 @@
-#  ![Cookieman](https://cloud.githubusercontent.com/assets/640611/11089200/f075ee22-885f-11e5-8cda-d620b6b79c69.png)
+# ![Cookieman](https://cloud.githubusercontent.com/assets/640611/11089200/f075ee22-885f-11e5-8cda-d620b6b79c69.png)
+
 Simple commonjs cookie lib with path and domain awareness and ie7+ support
 
+## usage
 
-## usage    
 ```javascript
 var cm = require('cookieman')
 ```
 
 ### get
+
 Get an array containing all available cookies that match specified name
+
 ```javascript
 cm.get('foo') // [{name: 'foo', value: 'bar'}]
 ```
 
 ### set
+
 Set a cookie, with optional options object to specify expiry, path and/or domain
+
 ```javascript
 cm.set('name', 'value', {
   expires: [date], // e.g. new Date(new Date().getTime() + 60000) or a timestamp
@@ -22,21 +27,28 @@ cm.set('name', 'value', {
   domain: [domain] // e.g. '.foo.com'
 })
 ```
+
 ### val
+
 Return the first value of a cookie that has been set on the page, or null if the cookie is not present
+
 ```javascript
 cm.val('name')
 ```
 
 ### cookies
+
 Get an array of all available cookies
+
 ```javascript
 cm.cookies() // [{name: 'name', value: 'value'}]
 ```
 
 ### clear
+
 Clear a cookie. This returns a boolean indicating whether the cookie was cleared or not.
 Note that to delete a cookie which lives on a specific path and/or domain, you must specify its path and/or domain.
+
 ```javascript
 cm.clear('name', {
   path: [path], // e.g. '/'
@@ -45,10 +57,13 @@ cm.clear('name', {
 ```
 
 ### clearAll
+
 Brute force clear all cookies with specified name on all super/subdomains and paths and return path and domain of cleared cookies
+
 ```javascript
 cm.clearAll('name') // [{ path: '/', domain: '.foo'}]
 ```
+
 ## test
 
 ```

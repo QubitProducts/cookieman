@@ -2,21 +2,24 @@
   "name": "cookieman",
   "version": "1.2.3",
   "main": "lib/cookieman",
-  "dependencies": {},
   "devDependencies": {
     "benchmark": "^2.1.0",
-    "karma": "^0.13.15",
-    "karma-chrome-launcher": "^0.2.1",
+    "healthier": "^4.0.0",
+    "is-docker": "^2.1.1",
+    "karma": "^6.3.2",
+    "karma-chrome-launcher": "^3.1.0",
     "karma-expect": "^1.1.1",
-    "karma-mocha": "^0.2.0",
+    "karma-mocha": "^2.0.1",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^2.0.2",
     "karma-sinon": "^1.0.4",
-    "karma-sourcemap-loader": "^0.3.6",
+    "karma-sourcemap-loader": "^0.3.8",
     "karma-spec-reporter": "0.0.24",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.3.3",
-    "sinon": "^1.17.2",
-    "standard": "^6.0.8",
-    "webpack": "^1.12.2"
+    "karma-webpack": "^4.0.2",
+    "mocha": "^8.4.0",
+    "prettier-standard": "^15.0.1",
+    "sinon": "^9.0.3",
+    "webpack": "^4.44.1"
   },
   "description": "Simple commonjs cookie lib with path and domain awareness and ie7+ support",
   "directories": {
@@ -24,7 +27,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "karma start --single-run && node_modules/.bin/standard"
+    "test": "karma start --single-run",
+    "test-ci": "karma start karma.conf.ci.js --single-run",
+    "lint": "healthier",
+    "format": "prettier-standard"
   },
   "repository": {
     "type": "git",
@@ -39,7 +45,7 @@
     "url": "https://github.com/QubitProducts/cookieman/issues"
   },
   "homepage": "https://github.com/QubitProducts/cookieman",
-  "standard": {
+  "healthier": {
     "global": [
       "describe",
       "before",
