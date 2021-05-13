@@ -29,10 +29,12 @@ describe('cookieman', function () {
 
       it('should map cookie values', function () {
         expect(cookieman.cookies()).to.have.length(1)
-        expect(cookieman.cookies()).to.eql([{
-          name: 'foo',
-          value: 'bar'
-        }])
+        expect(cookieman.cookies()).to.eql([
+          {
+            name: 'foo',
+            value: 'bar'
+          }
+        ])
       })
 
       it('should handle cookies with no equals sign', function () {
@@ -59,7 +61,8 @@ describe('cookieman', function () {
 
     afterEach(function () {
       document.cookie = 'sweety=darling; expires=' + new Date(1).toUTCString()
-      document.cookie = 'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
+      document.cookie =
+        'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
       document.cookie = 'flippy=magoo1; expires=' + new Date(1).toUTCString()
       document.cookie = 'foo1=ba=r; expires=' + new Date(1).toUTCString()
       document.cookie = 'foo2=barn=; expires=' + new Date(1).toUTCString()
@@ -73,25 +76,33 @@ describe('cookieman', function () {
     })
 
     it('should work when the value has an equals', function () {
-      expect(cookieman.get('foo1')).to.eql([{
-        name: 'foo1',
-        value: 'ba=r'
-      }])
-      expect(cookieman.get('foo2')).to.eql([{
-        name: 'foo2',
-        value: 'barn='
-      }])
-      expect(cookieman.get('foo3')).to.eql([{
-        name: 'foo3',
-        value: '=barn='
-      }])
+      expect(cookieman.get('foo1')).to.eql([
+        {
+          name: 'foo1',
+          value: 'ba=r'
+        }
+      ])
+      expect(cookieman.get('foo2')).to.eql([
+        {
+          name: 'foo2',
+          value: 'barn='
+        }
+      ])
+      expect(cookieman.get('foo3')).to.eql([
+        {
+          name: 'foo3',
+          value: '=barn='
+        }
+      ])
     })
 
     it('should get an empty string when no cookie value', function () {
-      expect(cookieman.get('empty')).to.eql([{
-        name: 'empty',
-        value: ''
-      }])
+      expect(cookieman.get('empty')).to.eql([
+        {
+          name: 'empty',
+          value: ''
+        }
+      ])
     })
 
     it('setting after getting should keep the cookie value as is', function () {
@@ -112,7 +123,8 @@ describe('cookieman', function () {
     afterEach(function () {
       document.cookie = 'sweety=darling; expires=' + new Date(1).toUTCString()
       document.cookie = 'flippy=magoo; expires=' + new Date(1).toUTCString()
-      document.cookie = 'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
+      document.cookie =
+        'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
     })
 
     it('should set cookies', function () {
@@ -131,7 +143,9 @@ describe('cookieman', function () {
       var delay
       beforeEach(function () {
         delay = 1200
-        cookieman.set('flippy', 'magoo', { expires: new Date(new Date().valueOf() + delay) })
+        cookieman.set('flippy', 'magoo', {
+          expires: new Date(new Date().valueOf() + delay)
+        })
       })
 
       it('should set the cookie', function () {
@@ -157,7 +171,9 @@ describe('cookieman', function () {
       var delay
       beforeEach(function () {
         delay = 1200
-        cookieman.set('flippy', 'magoo', { expires: new Date().valueOf() + delay })
+        cookieman.set('flippy', 'magoo', {
+          expires: new Date().valueOf() + delay
+        })
       })
 
       it('should set the cookie', function () {
@@ -184,7 +200,8 @@ describe('cookieman', function () {
     afterEach(function () {
       document.cookie = 'sweety=darling; expires=' + new Date(1).toUTCString()
       document.cookie = 'flippy=magoo; expires=' + new Date(1).toUTCString()
-      document.cookie = 'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
+      document.cookie =
+        'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
     })
 
     it('should clear cookies on the specified path and domain', function () {
@@ -208,10 +225,11 @@ describe('cookieman', function () {
     afterEach(function () {
       document.cookie = 'sweety=darling; expires=' + new Date(1).toUTCString()
       document.cookie = 'flippy=magoo; expires=' + new Date(1).toUTCString()
-      document.cookie = 'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
+      document.cookie =
+        'flippy=magoo; path=/cookie; expires=' + new Date(1).toUTCString()
     })
 
-    it('should clear cookies no matter what path/domain they\'re on', function () {
+    it("should clear cookies no matter what path/domain they're on", function () {
       cookieman.set('flippy', 'magoo', { path: '/cookie' })
       cookieman.clearAll('sweety')
       expect(cookieman.get('sweety')).to.have.length(0)
@@ -221,16 +239,20 @@ describe('cookieman', function () {
       var domain = window.location.hostname
 
       cookieman.set('flippy', 'magoo', { path: '/cookie' })
-      expect(cookieman.clearAll('flippy')).to.eql([{
-        path: '/cookie',
-        domain: domain
-      }])
+      expect(cookieman.clearAll('flippy')).to.eql([
+        {
+          path: '/cookie',
+          domain: domain
+        }
+      ])
 
       cookieman.set('flippy', 'magoo')
-      expect(cookieman.clearAll('flippy')).to.eql([{
-        path: null,
-        domain: null
-      }])
+      expect(cookieman.clearAll('flippy')).to.eql([
+        {
+          path: null,
+          domain: null
+        }
+      ])
     })
   })
   describe('val', function () {
@@ -251,7 +273,8 @@ describe('cookieman', function () {
       expect(cookieman.val('sweety')).to.eql('')
     })
     it('should return null if the cookie had no value set', function () {
-      document.cookie = 'sweety=; path=/cookie; expires=' + new Date(1).toUTCString()
+      document.cookie =
+        'sweety=; path=/cookie; expires=' + new Date(1).toUTCString()
       expect(cookieman.val('sweety')).to.eql(null)
     })
   })

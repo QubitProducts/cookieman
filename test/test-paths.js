@@ -7,6 +7,10 @@ describe('getPaths', function () {
   })
 
   it('should return a permutation of path parts', function () {
-    expect(getPaths('/to/enlightenment')).to.eql(['/', '/to', '/to/enlightenment'])
+    expect(getPaths('/to/enlightenment')).to.eql([
+      '/',
+      '/to',
+      '/to/enlightenment'
+    ])
   })
 })
