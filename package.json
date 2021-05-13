@@ -26,7 +26,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "karma start --single-run && node_modules/.bin/standard",
+    "test": "karma start --single-run",
+    "test-ci": "karma start karma.conf.ci.js --single-run",
     "lint": "healthier",
     "format": "prettier-standard"
   },
