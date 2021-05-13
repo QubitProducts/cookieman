@@ -235,17 +235,7 @@ describe('cookieman', function () {
       expect(cookieman.get('sweety')).to.have.length(0)
     })
 
-    it('should return metadata about the path and domain of the cleard cookie', function () {
-      var domain = window.location.hostname
-
-      cookieman.set('flippy', 'magoo', { path: '/cookie' })
-      expect(cookieman.clearAll('flippy')).to.eql([
-        {
-          path: '/cookie',
-          domain: domain
-        }
-      ])
-
+    it('should return null metadata about the path and domain if the cookie was cleared immediately', function () {
       cookieman.set('flippy', 'magoo')
       expect(cookieman.clearAll('flippy')).to.eql([
         {
@@ -253,6 +243,17 @@ describe('cookieman', function () {
           domain: null
         }
       ])
+    })
+
+    it('should return metadata about the path and domain of the cleared cookie', function () {
+      cookieman.set('flippy', 'magoo', {
+        path: '/cookie'
+      })
+
+      const cleared = cookieman.clearAll('flippy')
+
+      expect(cleared.length).to.eql(1)
+      expect(cleared[0].path).to.eql('/cookie')
     })
   })
   describe('val', function () {

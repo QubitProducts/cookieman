@@ -5,6 +5,7 @@ module.exports = function (config) {
     files: ['test/**/test-*.js'],
     preprocessors: { 'test/**/test-*.js': ['webpack', 'sourcemap'] },
     webpack: {
+      mode: 'development',
       watch: true,
       devtool: 'inline-source-map'
     },
@@ -13,6 +14,6 @@ module.exports = function (config) {
       logLevel: 'error'
     },
     reporters: ['spec'],
-    browsers: ['Chrome']
+    browsers: ['Safari']
   })
 }
