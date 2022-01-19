@@ -2,6 +2,7 @@
   "name": "cookieman",
   "version": "1.2.4",
   "main": "lib/cookieman",
+  "types": "types/cookieman.d.ts",
   "devDependencies": {
     "benchmark": "^2.1.0",
     "healthier": "^4.0.0",
