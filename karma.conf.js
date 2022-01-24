@@ -14,6 +14,6 @@ module.exports = function (config) {
       logLevel: 'error'
     },
     reporters: ['spec'],
-    browsers: ['Safari']
+    browsers: ['Chrome']
   })
 }
