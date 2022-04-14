@@ -26,6 +26,7 @@ spec:
         set -x
         set -e
 
+        export IS_CI=true
         cp /.ci-secrets/npmrc $HOME/.npmrc
         export XDG_CACHE_HOME=/cache/.cache
         export CYPRESS_CACHE_FOLDER=/cache/.cache

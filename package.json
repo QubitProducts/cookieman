@@ -6,7 +6,6 @@
   "devDependencies": {
     "benchmark": "^2.1.0",
     "healthier": "^4.0.0",
-    "is-docker": "^2.1.1",
     "karma": "^6.3.2",
     "karma-chrome-launcher": "^3.1.0",
     "karma-expect": "^1.1.1",
